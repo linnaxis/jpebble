@@ -17,7 +17,7 @@ void tick_handler(struct tm *tick_time, TimeUnits units_changed)
   //Format the buffer string using tick_time as the time source
   strftime(time_buffer, sizeof(time_buffer), "%l:%M", tick_time);
   strftime(meridian_buffer, sizeof(meridian_buffer), "%p", tick_time);
-  strftime(day_buffer, sizeof(day_buffer), "%a", tick_time);
+  strftime(day_buffer, sizeof(day_buffer), "%A", tick_time);
   strftime(date_buffer, sizeof(date_buffer), "%b %e", tick_time);
   
   text_layer_set_text(time_text_layer, time_buffer);
@@ -93,14 +93,14 @@ void window_load(Window *window)
   text_layer_set_font(meridian_text_layer, fonts_load_custom_font(meridian_font_handle));
   
   ResHandle day_font_handle = resource_get_handle(RESOURCE_ID_FONT_MULI_REG_20);
-  day_text_layer = text_layer_create(GRect(3, 105, 50, 35));
+  day_text_layer = text_layer_create(GRect(3, 105, 75, 30));
   text_layer_set_background_color(day_text_layer, GColorClear);
   text_layer_set_text_color(day_text_layer, GColorWhite);
   text_layer_set_text_alignment(day_text_layer, GTextAlignmentLeft);
   text_layer_set_font(day_text_layer, fonts_load_custom_font(day_font_handle));
   
   ResHandle date_font_handle = resource_get_handle(RESOURCE_ID_FONT_MULI_REG_20);
-  date_text_layer = text_layer_create(GRect(3, 137, 80, 35));
+  date_text_layer = text_layer_create(GRect(3, 132, 80, 35));
   text_layer_set_background_color(date_text_layer, GColorClear);
   text_layer_set_text_color(date_text_layer, GColorWhite);
   text_layer_set_text_alignment(date_text_layer, GTextAlignmentLeft);

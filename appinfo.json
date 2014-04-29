@@ -21,13 +21,7 @@
                 "trackingAdjust": -1,
                 "file": "fonts/Muli-Regular.ttf",
                 "type": "font",
-                "name": "FONT_MULI_REG_45"
-            },
-            {
-                "trackingAdjust": -1,
-                "file": "fonts/Muli-Regular.ttf",
-                "type": "font",
-                "name": "FONT_MULI_REG_47"
+                "name": "FONT_MULI_REG_20"
             },
             {
                 "trackingAdjust": -1,
@@ -39,7 +33,7 @@
                 "trackingAdjust": -1,
                 "file": "fonts/Muli-Regular.ttf",
                 "type": "font",
-                "name": "FONT_MULI_REG_20"
+                "name": "FONT_MULI_REG_45"
             }
         ]
     },
