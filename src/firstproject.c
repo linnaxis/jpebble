@@ -1,4 +1,5 @@
 #include <pebble.h>
+#include <math.h>
  
 Window *window;
 TextLayer *time_text_layer, *meridian_text_layer, *date_text_layer, *day_text_layer;
@@ -29,44 +30,45 @@ void tick_handler(struct tm *tick_time, TimeUnits units_changed)
   //seconds = (int)(tick_time->tm_sec * (72/60)); 
   //layer_set_frame((Layer *)inv_layer, GRect((72 - seconds), 60, (seconds * 2) , 35));
   seconds = tick_time->tm_sec; 
-  switch (seconds)
+  int block_num = (floor((seconds+1)/12));
+  switch (block_num)
   {
-    case 1:
+    case 0:
       for (int i=0;i<1;i++)
       {
         layer_set_hidden((Layer *) InvLayers[i], false);
       } 
       break;
     
-    case 12:
+    case 1:
       for (int i=0;i<2;i++)
       {
         layer_set_hidden((Layer *) InvLayers[i], false);
       } 
       break;
     
-    case 24:
+    case 2:
       for (int i=0;i<3;i++)
       {
         layer_set_hidden((Layer *) InvLayers[i], false);
       } 
       break;
     
-    case 36:
+    case 3:
       for (int i=0;i<4;i++)
       {
         layer_set_hidden((Layer *) InvLayers[i], false);
       } 
       break;
     
-    case 48:
+    case 4:
       for (int i=0;i<5;i++)
       {
         layer_set_hidden((Layer *) InvLayers[i], false);
       } 
       break;
     
-    case 0:
+    case 5:
       for (int i=0;i<5;i++)
       {
         layer_set_hidden((Layer*) InvLayers[i], true); 
@@ -93,7 +95,7 @@ void window_load(Window *window)
   text_layer_set_font(meridian_text_layer, fonts_load_custom_font(meridian_font_handle));
   
   ResHandle day_font_handle = resource_get_handle(RESOURCE_ID_FONT_MULI_REG_20);
-  day_text_layer = text_layer_create(GRect(3, 105, 75, 30));
+  day_text_layer = text_layer_create(GRect(3, 105, 90, 30));
   text_layer_set_background_color(day_text_layer, GColorClear);
   text_layer_set_text_color(day_text_layer, GColorWhite);
   text_layer_set_text_alignment(day_text_layer, GTextAlignmentLeft);

@@ -1,42 +1,42 @@
 {
-    "versionLabel": "1.0",
-    "watchapp": {
-        "watchface": true
-    },
-    "appKeys": {},
-    "longName": "jPebble",
-    "shortName": "jPebble",
     "capabilities": [
         ""
     ],
-    "companyName": "linnaxis@gmail.com",
+    "uuid": "456e5643-3456-4121-bf25-cf12ee65bfb2",
     "resources": {
         "media": [
             {
-                "file": "images/Jobscience_Logo.png",
+                "name": "IMAGE_LOGO_JS",
                 "type": "png",
-                "name": "IMAGE_LOGO_JS"
+                "file": "images/Jobscience_Logo.png"
             },
             {
-                "trackingAdjust": -1,
-                "file": "fonts/Muli-Regular.ttf",
+                "name": "FONT_MULI_REG_20",
                 "type": "font",
-                "name": "FONT_MULI_REG_20"
+                "file": "fonts/Muli-Regular.ttf",
+                "trackingAdjust": -1
             },
             {
-                "trackingAdjust": -1,
-                "file": "fonts/Muli-Regular.ttf",
+                "name": "FONT_MULI_REG_15",
                 "type": "font",
-                "name": "FONT_MULI_REG_15"
+                "file": "fonts/Muli-Regular.ttf",
+                "trackingAdjust": -1
             },
             {
-                "trackingAdjust": -1,
-                "file": "fonts/Muli-Regular.ttf",
+                "name": "FONT_MULI_REG_45",
                 "type": "font",
-                "name": "FONT_MULI_REG_45"
+                "file": "fonts/Muli-Regular.ttf",
+                "trackingAdjust": -1
             }
         ]
     },
+    "longName": "jPebble",
+    "watchapp": {
+        "watchface": true
+    },
+    "companyName": "linnaxis@gmail.com",
+    "shortName": "jPebble",
     "versionCode": 1,
-    "uuid": "456e5643-3456-4121-bf25-cf12ee65bfb2"
+    "versionLabel": "1.0",
+    "appKeys": {}
 }
