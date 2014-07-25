@@ -14,67 +14,41 @@ char date_buffer[] = "Apr 30";
  
 void tick_handler(struct tm *tick_time, TimeUnits units_changed)
 {
-  //Here we will update the watchface display
-  //Format the buffer string using tick_time as the time source
-  strftime(time_buffer, sizeof(time_buffer), "%l:%M", tick_time);
-  strftime(meridian_buffer, sizeof(meridian_buffer), "%p", tick_time);
-  strftime(day_buffer, sizeof(day_buffer), "%A", tick_time);
-  strftime(date_buffer, sizeof(date_buffer), "%b %e", tick_time);
-  
-  text_layer_set_text(time_text_layer, time_buffer);
-  text_layer_set_text(meridian_text_layer, meridian_buffer);
-  text_layer_set_text(day_text_layer, day_buffer);
-  text_layer_set_text(date_text_layer, date_buffer);
-  
-  int seconds;
-  //seconds = (int)(tick_time->tm_sec * (72/60)); 
-  //layer_set_frame((Layer *)inv_layer, GRect((72 - seconds), 60, (seconds * 2) , 35));
-  seconds = tick_time->tm_sec; 
-  int block_num = (floor((seconds+1)/12));
-  switch (block_num)
+
+  if (units_changed == MINUTE_UNIT)
   {
-    case 0:
-      for (int i=0;i<1;i++)
-      {
-        layer_set_hidden((Layer *) InvLayers[i], false);
-      } 
-      break;
-    
-    case 1:
-      for (int i=0;i<2;i++)
-      {
-        layer_set_hidden((Layer *) InvLayers[i], false);
-      } 
-      break;
-    
-    case 2:
-      for (int i=0;i<3;i++)
-      {
-        layer_set_hidden((Layer *) InvLayers[i], false);
-      } 
-      break;
-    
-    case 3:
-      for (int i=0;i<4;i++)
-      {
-        layer_set_hidden((Layer *) InvLayers[i], false);
-      } 
-      break;
-    
-    case 4:
-      for (int i=0;i<5;i++)
-      {
-        layer_set_hidden((Layer *) InvLayers[i], false);
-      } 
-      break;
-    
-    case 5:
-      for (int i=0;i<5;i++)
-      {
-        layer_set_hidden((Layer*) InvLayers[i], true); 
-      }
-      break;
+    strftime(time_buffer, sizeof(time_buffer), "%l:%M", tick_time);
+    text_layer_set_text(time_text_layer, time_buffer); 
   }
+  
+  if (units_changed == HOUR_UNIT)
+  {
+    strftime(meridian_buffer, sizeof(meridian_buffer), "%p", tick_time);
+    text_layer_set_text(meridian_text_layer, meridian_buffer);
+  }
+  
+  if (units_changed == DAY_UNIT)
+  {
+    strftime(day_buffer, sizeof(day_buffer), "%A", tick_time);
+    strftime(date_buffer, sizeof(date_buffer), "%b %e", tick_time);
+    text_layer_set_text(day_text_layer, day_buffer);
+    text_layer_set_text(date_text_layer, date_buffer);
+  }
+
+  if (units_changed == SECOND_UNIT)
+  {
+    //int seconds = tick_time->tm_sec; 
+    int block_num = (floor((tick_time->tm_sec + 1)/12));
+    bool hide_block = (block_num > 4)?true:false;
+    {
+      for (int i=0;i<=block_num;i++)
+      {
+        layer_get_hidden((Layer *) InvLayers[i]) != hide_block?
+          layer_set_hidden((Layer *) InvLayers[i], hide_block):false;
+      } 
+    } 
+  }
+ 
 }
 
 void window_load(Window *window)
